@@ -11,9 +11,11 @@
 
 #define PIN_0 0 // GPIO Pin 17 | Green cable | Data0
 #define PIN_1 1 // GPIO Pin 18 | White cable | Data1
+#define PIN_SOUND 25 // GPIO Pin 26 | Yellow cable | Sound
 
 #define MAXWIEGANDBITS 32
 #define READERTIMEOUT 3000000
+#define LEN 256
 
 static unsigned char __wiegandData[MAXWIEGANDBITS];
 static unsigned long __wiegandBitCount;
@@ -41,6 +43,7 @@ int wiegandInit(int d0pin, int d1pin) {
     wiringPiSetup() ;
     pinMode(d0pin, INPUT);
     pinMode(d1pin, INPUT);
+    pinMode(PIN_SOUND, OUTPUT);
 
     wiringPiISR(d0pin, INT_EDGE_FALLING, getData0);
     wiringPiISR(d1pin, INT_EDGE_FALLING, getData1);
@@ -89,13 +92,24 @@ void printCharAsBinary(unsigned char ch) {
     fclose(fp);
 }
 
-#define LEN 256
+
+void makeBeep(int millisecs, int times){
+    int i;
+    for (i = 0; i < times; i++) {
+        digitalWrite (PIN_SOUND,  LOW);
+        delay(millisecs);
+        digitalWrite (PIN_SOUND, HIGH);
+        delay(millisecs/2);
+    }
+}
+
 
 
 void main(void) {
     int i;
 
     wiegandInit(PIN_0, PIN_1);
+
 
     while(1) {
         int bitLen = wiegandGetPendingBitCount();
@@ -126,6 +140,7 @@ void main(void) {
             printf("\n");
             fprintf(fp, "\n");
             fclose(fp);
+            makeBeep(200, 1);
         }
     }
 }
