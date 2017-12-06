@@ -1,7 +1,6 @@
 # Wiegand Reader for Raspberry Pi
 
-![Fritzing](/images/image1.png)
-![Cable attachments](/images/image2.png)
+| ![Fritzing](/images/image1.png) | ![Cable attachments](/images/image2.png) |
 
 | Wires | Function |
 | ------ | ------ |
