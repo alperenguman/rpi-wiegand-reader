@@ -15,6 +15,5 @@ To compile:
 $ gcc -lpthread -lwiringPi -lrt hello.c -o hello
 ```
 
-
-![Fritzing](/images/image1.png)
-![Cable attachments](/images/image2.png) |
+![Fritzing](/images/image2.png)
+![Cable attachments](/images/image1.png)
