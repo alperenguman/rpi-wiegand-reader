@@ -15,9 +15,9 @@ To compile:
 $ gcc -lpthread -lwiringPi -lrt reader.c -o reader.o
 ```
 
-##Sample output:
+## Sample output:
 ![Output](/images/image3.png)
 
-##Wiring:
+## Wiring:
 ![Fritzing](/images/image2.png)
 ![Cable attachments](/images/image1.png)
